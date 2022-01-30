@@ -36,7 +36,11 @@ public class UserService {
 
     public Optional<User> getUser(Long userId) {
         Optional<User> user = this.userRepository.findById(userId);
-        return user;
+        if (user.isPresent()) {
+            return user;
+        } else {
+            throw new InformationNotFoundException("user with id " + userId + " not found.");
+        }
     }
 
     public User updateUser(Long userId, User userObject) {
