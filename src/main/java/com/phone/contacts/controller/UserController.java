@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")    // url -> http://localhost:9092/api
+@RequestMapping(path = "/api")    // url -> http://localhost:9092/api
 public class UserController {
 
     private UserService userService;

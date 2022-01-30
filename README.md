@@ -37,10 +37,10 @@ As a user I want to be able to keep a phone contact list.
 
 ### Endpoints for users
 
-| Request Type | URL                 | Functionality | Request Body |
-|--------------|---------------------|---------------|--------------|
-| GET          | /api/user           | Get all users | None         |
-| GET          | /api/user/{userid}  | Get a user    | None         |
-| POST         | /api/user           | Create a user | User object  |
-| PUT          | /api/user/{userid}  | Update a user | User object  |
-| DELETE       | /api/user/{userid}  | Delete a user | None         |
+| Request Type | URL                | Functionality | Request Body |
+|--------------|--------------------|---------------|--------------|
+| GET          | /api/user          | Get all users | None         |
+| POST         | /api/user/         | Create a user | User object  |
+| GET          | /api/user{userid}  | Get a user    | None         |
+| PUT          | /api/user/{userid} | Update a user | User object  |
+| DELETE       | /api/user/{userid} | Delete a user | None         |
