@@ -31,4 +31,16 @@ public class UserService {
         Optional<User> user = this.userRepository.findById(userId);
         return user;
     }
+
+    public User updateUser(Long userId, User userObject) {
+        Optional<User> optionalObject = this.userRepository.findById(userId);
+        if (optionalObject.isPresent()) {
+            User user = optionalObject.get();
+            user.setName(userObject.getName());
+            return userRepository.save(user);
+        } else {
+            System.out.println("User doesn't exist.");
+        }
+        return null;
+    }
 }

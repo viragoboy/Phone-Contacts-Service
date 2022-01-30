@@ -37,4 +37,10 @@ public class UserController {
         return userService.getUser(userId);
     }
 
+    @PutMapping("/user/{userId}")   // url -> http://localhost:9092/api/user/userId
+    public User updateUser(@PathVariable Long userId, @RequestBody User userObject) {
+        System.out.println("calling updateUser");
+        return userService.updateUser(userId, userObject);
+    }
+
 }
