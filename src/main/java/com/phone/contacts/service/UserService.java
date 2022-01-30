@@ -1,5 +1,7 @@
 package com.phone.contacts.service;
 
+import com.phone.contacts.exceptions.InformationExistException;
+import com.phone.contacts.exceptions.InformationNotFoundException;
 import com.phone.contacts.model.User;
 import com.phone.contacts.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,12 @@ public class UserService {
     }
 
     public User createUser(User userObject) {
-        return userRepository.save(userObject);
+        User user = userRepository.findByName(userObject.getName());
+        if (user != null) {
+            throw new InformationExistException("user with name " + user.getName() + " already exists.");
+        } else {
+            return userRepository.save(userObject);
+        }
     }
 
     public Optional<User> getUser(Long userId) {
@@ -39,9 +46,8 @@ public class UserService {
             user.setName(userObject.getName());
             return userRepository.save(user);
         } else {
-            System.out.println("User doesn't exist.");
+            throw new InformationNotFoundException("user with id " + userId + " not found.");
         }
-        return null;
     }
 
     public User deleteUser(Long userId) {
@@ -51,8 +57,7 @@ public class UserService {
             userRepository.delete(user);
             return user;
         } else {
-            System.out.println("User doesn't exist.");
+            throw new InformationNotFoundException("user with id " + userId + " not found.");
         }
-        return null;
     }
 }
