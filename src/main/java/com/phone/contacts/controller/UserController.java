@@ -3,9 +3,7 @@ package com.phone.contacts.controller;
 import com.phone.contacts.model.User;
 import com.phone.contacts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,11 @@ public class UserController {
     public List<User> getAllUsers() {
         System.out.println("calling getAllUsers");
         return userService.getAllUsers();
+    }
+
+    @PostMapping("/user")   // url -> http://localhost:9092/api/user
+    public User createUser(@RequestBody User userObject) {
+        System.out.println("calling createUser");
+        return userService.createUser(userObject);
     }
 }
