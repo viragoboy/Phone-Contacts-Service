@@ -3,10 +3,12 @@ package com.phone.contacts.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "address")
 public class Address {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "address_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int addressId;
 
     @Column(name = "street")
@@ -20,6 +22,9 @@ public class Address {
 
     @Column(name = "zip_code")
     private Integer zipCode;
+
+    @OneToOne(mappedBy = "address")
+    private Contact contact;
 
     public Address(int addressId, String street, String city, String state, Integer zipCode) {
         this.addressId = addressId;
@@ -72,6 +77,14 @@ public class Address {
         this.zipCode = zipCode;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
     @Override
     public String toString() {
         return "Address{" +
@@ -82,5 +95,6 @@ public class Address {
                 ", zipCode=" + zipCode +
                 '}';
     }
+
 }
 

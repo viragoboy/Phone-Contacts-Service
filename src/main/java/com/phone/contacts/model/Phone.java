@@ -3,10 +3,12 @@ package com.phone.contacts.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "phone")
 public class Phone {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "phone_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int phoneId;
 
     @Column(name = "type")
@@ -15,14 +17,14 @@ public class Phone {
     @Column(name = "number")
     private String number;
 
-    @Column(name = "contact_id")
-    private Integer contactId;
+    @ManyToOne
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
 
     public Phone(int phoneId, String type, String number, Integer contactId) {
         this.phoneId = phoneId;
         this.type = type;
         this.number = number;
-        this.contactId = contactId;
     }
 
     public Phone() {
@@ -52,12 +54,12 @@ public class Phone {
         this.number = number;
     }
 
-    public Integer getContactId() {
-        return contactId;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setContactId(Integer contactId) {
-        this.contactId = contactId;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     @Override
@@ -66,7 +68,7 @@ public class Phone {
                 "phoneId=" + phoneId +
                 ", type='" + type + '\'' +
                 ", number='" + number + '\'' +
-                ", contactId=" + contactId +
                 '}';
     }
+
 }

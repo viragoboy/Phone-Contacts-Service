@@ -1,28 +1,40 @@
 package com.phone.contacts.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "contacts")
 public class Contact {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "contact_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int contactId;
+
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "address_id")
-    private Integer addressId;
 
-    @Column(name = "user_id")
-    private Integer userId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "contact")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Phone> phones;
 
     public Contact(int contactId, String name, Integer addressId, Integer userId) {
         this.contactId = contactId;
         this.name = name;
-        this.addressId = addressId;
-        this.userId = userId;
     }
 
     public Contact() {
@@ -44,20 +56,28 @@ public class Contact {
         this.name = name;
     }
 
-    public Integer getAddressId() {
-        return addressId;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
     }
 
     @Override
@@ -65,8 +85,7 @@ public class Contact {
         return "Contact{" +
                 "contactId=" + contactId +
                 ", name='" + name + '\'' +
-                ", addressId=" + addressId +
-                ", userId=" + userId +
                 '}';
     }
+
 }

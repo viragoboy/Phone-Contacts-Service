@@ -1,16 +1,26 @@
 package com.phone.contacts.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Contact> contacts;
 
     public User(int userId, String name) {
         this.userId = userId;
@@ -36,6 +46,14 @@ public class User {
         this.name = name;
     }
 
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -43,4 +61,5 @@ public class User {
                 ", name='" + name + '\'' +
                 '}';
     }
+
 }
