@@ -43,4 +43,16 @@ public class UserService {
         }
         return null;
     }
+
+    public User deleteUser(Long userId) {
+        Optional<User> optionalObject = this.userRepository.findById(userId);
+        if (optionalObject.isPresent()) {
+            User user = optionalObject.get();
+            userRepository.delete(user);
+            return user;
+        } else {
+            System.out.println("User doesn't exist.");
+        }
+        return null;
+    }
 }
