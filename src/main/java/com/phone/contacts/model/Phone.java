@@ -9,7 +9,7 @@ public class Phone {
     @Id
     @Column(name = "phone_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int phoneId;
+    private Long phoneId;
 
     @Column(name = "type")
     private String type;
@@ -21,7 +21,7 @@ public class Phone {
     @JoinColumn(name = "contact_id")
     private Contact contact;
 
-    public Phone(int phoneId, String type, String number, Integer contactId) {
+    public Phone(Long phoneId, String type, String number, Integer contactId) {
         this.phoneId = phoneId;
         this.type = type;
         this.number = number;
@@ -30,11 +30,11 @@ public class Phone {
     public Phone() {
     }
 
-    public int getPhoneId() {
+    public Long getPhoneId() {
         return phoneId;
     }
 
-    public void setPhoneId(int phoneId) {
+    public void setPhoneId(Long phoneId) {
         this.phoneId = phoneId;
     }
 

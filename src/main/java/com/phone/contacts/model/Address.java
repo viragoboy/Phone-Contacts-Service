@@ -9,7 +9,7 @@ public class Address {
     @Id
     @Column(name = "address_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int addressId;
+    private Long addressId;
 
     @Column(name = "street")
     private String street;
@@ -26,7 +26,7 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Contact contact;
 
-    public Address(int addressId, String street, String city, String state, Integer zipCode) {
+    public Address(Long addressId, String street, String city, String state, Integer zipCode) {
         this.addressId = addressId;
         this.street = street;
         this.city = city;
@@ -37,11 +37,11 @@ public class Address {
     public Address() {
     }
 
-    public int getAddressId() {
+    public Long getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(int addressId) {
+    public void setAddressId(Long addressId) {
         this.addressId = addressId;
     }
 

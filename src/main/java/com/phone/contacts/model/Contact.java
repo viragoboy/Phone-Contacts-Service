@@ -13,7 +13,7 @@ public class Contact {
     @Id
     @Column(name = "contact_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int contactId;
+    private Long contactId;
 
 
     @Column(name = "name")
@@ -32,7 +32,7 @@ public class Contact {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Phone> phones;
 
-    public Contact(int contactId, String name, Integer addressId, Integer userId) {
+    public Contact(Long contactId, String name, Integer addressId, Integer userId) {
         this.contactId = contactId;
         this.name = name;
     }
@@ -40,11 +40,11 @@ public class Contact {
     public Contact() {
     }
 
-    public int getContactId() {
+    public Long getContactId() {
         return contactId;
     }
 
-    public void setContactId(int contactId) {
+    public void setContactId(Long contactId) {
         this.contactId = contactId;
     }
 
