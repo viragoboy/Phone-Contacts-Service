@@ -3,9 +3,10 @@
 Project for my bootcamp
 
 ## Purpose of this application
-This application is designed to manage phone contacts similar to what is available in a smart phone. The user should be able to create new contacts, update those contacts and delete them. 
+This application is designed to manage phone contacts similar to what is available in a smartphone. The user should be able to create new contacts, update those contacts and delete them. 
 
-###Phone Contacts User Stories
+
+### Phone Contacts User Stories
 
 As a user I want to be able to create a new phone contact.
 
@@ -32,3 +33,14 @@ As a user I want to be able to delete a contact not longer needed.
 * Then the deleted contact is removed from the database and I will not see it on my contacts list anymore
 
 As a user I want to be able to keep a phone contact list.
+
+
+### Endpoints for users
+
+| Request Type | URL                 | Functionality | Request Body |
+|--------------|---------------------|---------------|--------------|
+| GET          | /api/user           | Get all users | None         |
+| GET          | /api/user/{userid}  | Get a user    | None         |
+| POST         | /api/user           | Create a user | User object  |
+| PUT          | /api/user/{userid}  | Update a user | User object  |
+| DELETE       | /api/user/{userid}  | Delete a user | None         |
