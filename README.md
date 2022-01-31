@@ -35,12 +35,23 @@ As a user I want to be able to delete a contact not longer needed.
 As a user I want to be able to keep a phone contact list.
 
 
-### Endpoints for users
+### Endpoints for user
 
 | Request Type | URL                | Functionality | Request Body |
 |--------------|--------------------|---------------|--------------|
 | GET          | /api/user          | Get all users | None         |
 | POST         | /api/user/         | Create a user | User object  |
-| GET          | /api/user{userid}  | Get a user    | None         |
-| PUT          | /api/user/{userid} | Update a user | User object  |
-| DELETE       | /api/user/{userid} | Delete a user | None         |
+| GET          | /api/user/{userId} | Get a user    | None         |
+| PUT          | /api/user/{userId} | Update a user | User object  |
+| DELETE       | /api/user/{userId} | Delete a user | None         |
+
+
+### Endpoints for contact
+
+| Request Type | URL                                    | Functionality    | Request Body |
+|--------------|----------------------------------------|------------------|--------------|
+| GET          | /api/user/{userId}/contact             | Get all contacts | None         |
+| POST         | /api/user/{userId}/contact             | Create a contact | User object  |
+| GET          | /api/user/{userId}/contact/{contactId} | Get a contact    | None         |
+| PUT          | /api/user/{userId}/contact/{contactId} | Update a contact | User object  |
+| DELETE       | /api/user/{userId}/contact/{contactId} | Delete a contact | None         |
