@@ -1,5 +1,7 @@
 package com.phone.contacts.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,7 @@ public class Phone {
 
     @ManyToOne
     @JoinColumn(name = "contact_id")
+    @JsonIgnore
     private Contact contact;
 
     public Phone(Long phoneId, String type, String number, Integer contactId) {
