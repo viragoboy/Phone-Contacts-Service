@@ -1,5 +1,6 @@
 package com.phone.contacts.service;
 
+import com.phone.contacts.exceptions.InformationExistException;
 import com.phone.contacts.exceptions.InformationNotFoundException;
 import com.phone.contacts.model.Contact;
 import com.phone.contacts.model.User;
@@ -31,6 +32,17 @@ public class ContactService {
         List<Contact> contact = contactRepository.getAllContactsByUser(user);
         return contact;
     }
+
+    public Contact createContact(Long userId, Contact contactObject) {
+        User user = userService.getUser(userId).get();
+        Contact contact = contactRepository.getContactByUserAndName(user, contactObject.getName());
+        if (contact == null) {
+            return contactRepository.save(contactObject);
+        } else {
+            throw new InformationExistException("contact exists, cannot add");
+        }
+    }
+
 
     public Contact getContactById(Long userId, Long contactId){
         User user = userService.getUser(userId).get();

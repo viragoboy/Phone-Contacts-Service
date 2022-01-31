@@ -3,10 +3,7 @@ package com.phone.contacts.controller;
 import com.phone.contacts.model.Contact;
 import com.phone.contacts.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,12 @@ public class ContactController {
     public List<Contact> getAllContacts(@PathVariable Long userId) {
         System.out.println("calling getAllContacts");
         return contactService.getAllContacts(userId);
+    }
+
+    @PostMapping("/user/{userId}/contact")   // url -> http://localhost:9092/api/user/userId/contact
+    public Contact createContact(@PathVariable Long userId, @RequestBody Contact contactObject) {
+        System.out.println("calling createContact");
+        return contactService.createContact(userId, contactObject);
     }
 
     @GetMapping("/user/{userId}/contact/{contactId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId

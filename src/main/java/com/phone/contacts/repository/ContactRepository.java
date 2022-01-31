@@ -10,5 +10,7 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     Contact getContactByUserAndContactId(User user, Long contactId);
 
+    Contact getContactByUserAndName(User user, String name);
+
     List<Contact> getAllContactsByUser(User user);
 }
