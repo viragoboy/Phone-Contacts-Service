@@ -7,6 +7,8 @@ import com.phone.contacts.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContactService {
 
@@ -22,6 +24,12 @@ public class ContactService {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public List<Contact> getAllContacts(Long userId){
+        User user = userService.getUser(userId).get();
+        List<Contact> contact = contactRepository.getAllContactsByUser(user);
+        return contact;
     }
 
     public Contact getContactById(Long userId, Long contactId){
