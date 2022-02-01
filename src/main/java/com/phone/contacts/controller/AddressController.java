@@ -31,7 +31,7 @@ public class AddressController {
     }
 
     @GetMapping("/user/{userId}/contact/{contactId}/address/{addressId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId/address/addressId
-    public List<Address> getAddressById(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long addressId) {
+    public Address getAddressById(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long addressId) {
         System.out.println("calling getAddressById");
         return addressService.getAddressById(userId, contactId, addressId);
     }

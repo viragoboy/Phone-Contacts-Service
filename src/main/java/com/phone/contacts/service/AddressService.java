@@ -55,11 +55,10 @@ public class AddressService {
         }
     }
 
-    public List<Address> getAddressById(Long userId, Long contactId, Long addressId) {
+    public Address getAddressById(Long userId, Long contactId, Long addressId) {
         Contact contact = contactService.getContactById(userId, contactId);
-        List<Address> address  = addressRepository.getAddressByContact(contact);
-        if (address.size() != 0) {
-            return address;
+        if (contact.getAddress().getAddressId() == addressId) {
+            return contact.getAddress();
         } else {
             throw new InformationNotFoundException("address with id " + addressId + " not found.");
         }
