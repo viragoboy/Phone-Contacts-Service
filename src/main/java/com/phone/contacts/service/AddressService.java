@@ -49,7 +49,7 @@ public class AddressService {
             contactRepository.save(contact);
             return newAddress;
         } else {
-            throw new InformationExistException("address " + addressObject + " already exists.");
+            throw new InformationExistException("address for contact id " + contactId + " already exists.");
         }
     }
 
