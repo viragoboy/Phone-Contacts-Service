@@ -5,7 +5,6 @@ import com.phone.contacts.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api")    // url -> http://localhost:9092/api
@@ -34,5 +33,11 @@ public class AddressController {
     public Address getAddressById(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long addressId) {
         System.out.println("calling getAddressById");
         return addressService.getAddressById(userId, contactId, addressId);
+    }
+
+    @PutMapping("/user/{userId}/contact/{contactId}/address/{addressId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId/address/addressId
+    public Address updateAddress(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long addressId, @RequestBody Address addressObject) {
+        System.out.println("calling updateAddress");
+        return addressService.getAddressById(userId, contactId, addressId, addressObject);
     }
 }
