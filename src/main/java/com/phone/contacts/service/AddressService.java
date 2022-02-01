@@ -9,7 +9,6 @@ import com.phone.contacts.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class AddressService {
@@ -43,8 +42,7 @@ public class AddressService {
 
     public Address createAddress(Long userId, Long contactId, Address addressObject) {
         Contact contact = contactService.getContactById(userId, contactId);
-        List<Address> address = addressRepository.getAddressByContact(contact);
-        if (address.size() == 0) {
+        if (contact.getAddress() == null) {
             addressObject.setContact(contact);
             Address newAddress = addressRepository.save(addressObject);
             contact.setAddress(newAddress);
@@ -63,5 +61,10 @@ public class AddressService {
             throw new InformationNotFoundException("address with id " + addressId + " not found.");
         }
     }
+
+//    public  Address updateAddress(Long userId, Long contactId, Long addressId, Address addressObject) {
+//        Contact contact = contactService.getContactById(userId, contactId);
+//
+//    }
 
 }
