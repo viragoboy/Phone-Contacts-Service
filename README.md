@@ -61,7 +61,7 @@ As a user I want to be able to keep a phone contact list.
 
 | Request Type | URL                                                         | Functionality     | Request Body   |
 |--------------|-------------------------------------------------------------|-------------------|----------------|
-| GET          | /api/user/{userId}/contact/{contactId}/address              | Get an address    | None           |
+| GET          | /api/user/{userId}/contact/{contactId}/address              | Get all addresses | None           |
 | POST         | /api/user/{userId}/contact/{contactId}/address              | Create an address | Address object |
 | GET          | /api/user/{userId}/contact/{contactId}/address/{address_id} | Get an address    | None           |
 | PUT          | /api/user/{userId}/contact/{contactId}/address/{address_id} | Update an address | Address object |
