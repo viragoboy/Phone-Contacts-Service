@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ContactService {
@@ -29,7 +28,7 @@ public class ContactService {
     }
 
     public List<Contact> getAllContacts(Long userId) {
-        User user = userService.getUser(userId).get();
+        User user = userService.getUser(userId).get();   // This gives me the userObject and throws an exception if it doesn't exist. Is calling getUser() from UserService..
         List<Contact> contact = contactRepository.getAllContactsByUser(user);
         return contact;
     }
@@ -38,7 +37,7 @@ public class ContactService {
         User user = userService.getUser(userId).get();
         Contact contact = contactRepository.getContactByUserAndName(user, contactObject.getName());
         if (contact == null) {
-            contactObject.setUser(user);
+            contactObject.setUser(user);   // This is linking a contact to the user.
             return contactRepository.save(contactObject);
         } else {
             throw new InformationExistException("contact " + contactObject.getName() + " already exists.");
@@ -59,7 +58,7 @@ public class ContactService {
         User user = userService.getUser(userId).get();
         Contact contact = contactRepository.getContactByUserAndContactId(user, contactId);
         if (contact != null) {
-            contact.setName(contactObject.getName());
+            contact.setName(contactObject.getName());   // This updates the name in the contactObject.
             return contactRepository.save(contact);
         } else {
             throw new InformationNotFoundException("contact with id " + contactId + " not found.");
