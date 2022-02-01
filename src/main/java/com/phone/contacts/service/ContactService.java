@@ -55,4 +55,15 @@ public class ContactService {
         }
     }
 
+    public Contact updateContact(Long userId, Long contactId, Contact contactObject) {
+        User user = userService.getUser(userId).get();
+        Contact contact = contactRepository.getContactByUserAndContactId(user, contactId);
+        if (contact != null) {
+            contact.setName(contactObject.getName());
+            return contactRepository.save(contact);
+        } else {
+            throw new InformationNotFoundException("contact with id " + contactId + " not found.");
+        }
+    }
+
 }

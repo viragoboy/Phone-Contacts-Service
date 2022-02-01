@@ -37,4 +37,10 @@ public class ContactController {
         return contactService.getContactById(userId, contactId);
     }
 
+    @PutMapping("/user/{userId}/contact/{contactId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId
+    public Contact updateContact(@PathVariable Long userId, @PathVariable Long contactId, @RequestBody Contact contactObject) {
+        System.out.println("calling updateContact");
+        return contactService.updateContact(userId, contactId, contactObject);
+    }
+
 }
