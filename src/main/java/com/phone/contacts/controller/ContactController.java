@@ -1,6 +1,7 @@
 package com.phone.contacts.controller;
 
 import com.phone.contacts.model.Contact;
+import com.phone.contacts.model.User;
 import com.phone.contacts.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,4 +36,5 @@ public class ContactController {
         System.out.println("calling getContactById");
         return contactService.getContactById(userId, contactId);
     }
+
 }

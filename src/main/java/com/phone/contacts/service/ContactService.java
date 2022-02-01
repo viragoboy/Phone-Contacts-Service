@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContactService {
@@ -27,7 +28,7 @@ public class ContactService {
         this.userService = userService;
     }
 
-    public List<Contact> getAllContacts(Long userId){
+    public List<Contact> getAllContacts(Long userId) {
         User user = userService.getUser(userId).get();
         List<Contact> contact = contactRepository.getAllContactsByUser(user);
         return contact;
@@ -37,14 +38,14 @@ public class ContactService {
         User user = userService.getUser(userId).get();
         Contact contact = contactRepository.getContactByUserAndName(user, contactObject.getName());
         if (contact == null) {
+            contactObject.setUser(user);
             return contactRepository.save(contactObject);
         } else {
-            throw new InformationExistException("contact exists, cannot add");
+            throw new InformationExistException("contact " + contactObject.getName() + " already exists.");
         }
     }
 
-
-    public Contact getContactById(Long userId, Long contactId){
+    public Contact getContactById(Long userId, Long contactId) {
         User user = userService.getUser(userId).get();
         Contact contact  = contactRepository.getContactByUserAndContactId(user, contactId);
         if (contact != null) {
@@ -53,4 +54,5 @@ public class ContactService {
             throw new InformationNotFoundException("contact with id " + contactId + " not found.");
         }
     }
+
 }
