@@ -19,9 +19,9 @@ public class AddressController {
     }
 
     @GetMapping("/user/{userId}/contact/{contactId}/address")   // url -> http://localhost:9092/api/user/userId/contact/contactId/address
-    public List<Address> getAllAddresses(@PathVariable Long userId, @PathVariable Long contactId) {
-        System.out.println("calling getAllAddresses");
-        return addressService.getAllAddresses(userId, contactId);
+    public Address getAddress(@PathVariable Long userId, @PathVariable Long contactId) {
+        System.out.println("calling getAddress");
+        return addressService.getAddress(userId, contactId);
     }
 
     @PostMapping("/user/{userId}/contact/{contactId}/address")   // url -> http://localhost:9092/api/user/userId/contact/contactId/address
@@ -31,8 +31,8 @@ public class AddressController {
     }
 
     @GetMapping("/user/{userId}/contact/{contactId}/address/{addressId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId/address/addressId
-    public List<Address> getAddress(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long addressId) {
-        System.out.println("calling getAddress");
-        return addressService.getAddress(userId, contactId, addressId);
+    public List<Address> getAddressById(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long addressId) {
+        System.out.println("calling getAddressById");
+        return addressService.getAddressById(userId, contactId, addressId);
     }
 }

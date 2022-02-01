@@ -1,5 +1,7 @@
 package com.phone.contacts.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,7 +26,7 @@ public class Address {
     private Integer zipCode;
 
     @OneToOne(mappedBy = "address")
-    @JoinColumn(name = "contact_id")
+    @JsonIgnore
     private Contact contact;
 
     public Address(Long addressId, String street, String city, String state, Integer zipCode) {
