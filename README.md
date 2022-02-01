@@ -35,7 +35,7 @@ As a user I want to be able to delete a contact not longer needed.
 As a user I want to be able to keep a phone contact list.
 
 
-### Endpoints for user
+### Endpoints for User
 
 | Request Type | URL                | Functionality | Request Body |
 |--------------|--------------------|---------------|--------------|
@@ -46,12 +46,23 @@ As a user I want to be able to keep a phone contact list.
 | DELETE       | /api/user/{userId} | Delete a user | None         |
 
 
-### Endpoints for contact
+### Endpoints for Contact
 
-| Request Type | URL                                    | Functionality    | Request Body |
-|--------------|----------------------------------------|------------------|--------------|
-| GET          | /api/user/{userId}/contact             | Get all contacts | None         |
-| POST         | /api/user/{userId}/contact             | Create a contact | User object  |
-| GET          | /api/user/{userId}/contact/{contactId} | Get a contact    | None         |
-| PUT          | /api/user/{userId}/contact/{contactId} | Update a contact | User object  |
-| DELETE       | /api/user/{userId}/contact/{contactId} | Delete a contact | None         |
+| Request Type | URL                                    | Functionality    | Request Body   |
+|--------------|----------------------------------------|------------------|----------------|
+| GET          | /api/user/{userId}/contact             | Get all contacts | None           |
+| POST         | /api/user/{userId}/contact             | Create a contact | Contact object |
+| GET          | /api/user/{userId}/contact/{contactId} | Get a contact    | None           |
+| PUT          | /api/user/{userId}/contact/{contactId} | Update a contact | Contact object |
+| DELETE       | /api/user/{userId}/contact/{contactId} | Delete a contact | None           |
+
+
+### Endpoints for Address
+
+| Request Type | URL                                                         | Functionality     | Request Body   |
+|--------------|-------------------------------------------------------------|-------------------|----------------|
+| GET          | /api/user/{userId}/contact/{contactId}/address              | Get an address    | None           |
+| POST         | /api/user/{userId}/contact/{contactId}/address              | Create an address | Address object |
+| GET          | /api/user/{userId}/contact/{contactId}/address/{address_id} | Get an address    | None           |
+| PUT          | /api/user/{userId}/contact/{contactId}/address/{address_id} | Update an address | Address object |
+| DELETE       | /api/user/{userId}/contact/{contactId}/address/{address_id} | Delete an address | None           |
