@@ -43,4 +43,10 @@ public class ContactController {
         return contactService.updateContact(userId, contactId, contactObject);
     }
 
+    @DeleteMapping("/user/{userId}/contact/{contactId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId
+    public Contact deleteContact(@PathVariable Long userId, @PathVariable Long contactId) {
+        System.out.println("calling deleteContact");
+        return contactService.deleteContact(userId, contactId);
+    }
+
 }

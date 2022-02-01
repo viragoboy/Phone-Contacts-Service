@@ -66,4 +66,15 @@ public class ContactService {
         }
     }
 
+    public Contact deleteContact(Long userId, Long contactId) {
+        User user = userService.getUser(userId).get();
+        Contact contact  = contactRepository.getContactByUserAndContactId(user, contactId);
+        if (contact != null) {
+            contactRepository.delete(contact);
+            return contact;
+        } else {
+            throw new InformationNotFoundException("contact with id " + contactId + " not found.");
+        }
+    }
+
 }
