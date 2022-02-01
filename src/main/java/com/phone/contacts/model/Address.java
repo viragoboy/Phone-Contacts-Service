@@ -24,6 +24,7 @@ public class Address {
     private Integer zipCode;
 
     @OneToOne(mappedBy = "address")
+    @JoinColumn(name = "contact_id")
     private Contact contact;
 
     public Address(Long addressId, String street, String city, String state, Integer zipCode) {
