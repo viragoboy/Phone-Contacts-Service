@@ -62,9 +62,19 @@ public class AddressService {
         }
     }
 
-//    public  Address updateAddress(Long userId, Long contactId, Long addressId, Address addressObject) {
-//        Contact contact = contactService.getContactById(userId, contactId);
-//
-//    }
+    public  Address updateAddress(Long userId, Long contactId, Long addressId, Address addressObject) {
+        Contact contact = contactService.getContactById(userId, contactId);
+        if (contact.getAddress() != null && contact.getAddress().getAddressId() == addressId) {
+//            addressObject.setContact(contact);
+//            Address updatedAddress = addressRepository.save(addressObject);
+            contact.getAddress().setStreet(addressObject.getStreet());
+            contact.getAddress().setCity(addressObject.getCity());
+            contact.getAddress().setState(addressObject.getState());
+            contact.getAddress().setZipCode(addressObject.getZipCode());
+            return addressRepository.save(contact.getAddress());
+        } else {
+            throw new InformationNotFoundException("address with id " + addressId + " not found.");
+        }
+    }
 
 }
