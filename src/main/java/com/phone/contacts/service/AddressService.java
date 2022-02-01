@@ -1,5 +1,6 @@
 package com.phone.contacts.service;
 
+import com.phone.contacts.exceptions.InformationExistException;
 import com.phone.contacts.model.Address;
 import com.phone.contacts.model.Contact;
 import com.phone.contacts.repository.AddressRepository;
@@ -31,4 +32,16 @@ public class AddressService {
         List<Address> address = addressRepository.getAddressByContact(contact);
         return address;
     }
+
+    public Address createAddress(Long userId, Long contactId, Address addressObject) {
+        Contact contact = contactService.getContactById(userId, contactId);
+        List<Address> address = addressRepository.getAddressByContact(contact);
+        if (address.size() == 0) {
+            addressObject.setContact(contact);
+            return addressRepository.save(addressObject);
+        } else {
+            throw new InformationExistException("address " + addressObject + " already exists.");
+        }
+    }
+
 }
