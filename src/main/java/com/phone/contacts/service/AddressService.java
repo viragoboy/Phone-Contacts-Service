@@ -1,6 +1,7 @@
 package com.phone.contacts.service;
 
 import com.phone.contacts.exceptions.InformationExistException;
+import com.phone.contacts.exceptions.InformationNotFoundException;
 import com.phone.contacts.model.Address;
 import com.phone.contacts.model.Contact;
 import com.phone.contacts.repository.AddressRepository;
@@ -41,6 +42,16 @@ public class AddressService {
             return addressRepository.save(addressObject);
         } else {
             throw new InformationExistException("address " + addressObject + " already exists.");
+        }
+    }
+
+    public List<Address> getAddress(Long userId, Long contactId, Long addressId) {
+        Contact contact = contactService.getContactById(userId, contactId);
+        List<Address> address  = addressRepository.getAddressByContact(contact);
+        if (address.size() != 0) {
+            return address;
+        } else {
+            throw new InformationNotFoundException("address with id " + addressId + " not found.");
         }
     }
 
