@@ -28,7 +28,8 @@ public class ContactService {
     }
 
     public List<Contact> getAllContacts(Long userId) {
-        User user = userService.getUser(userId).get();   // This gives me the userObject and throws an exception if it doesn't exist. Is calling getUser() from UserService..
+    // This gives me the userObject and throws an exception if it doesn't exist. Is calling getUser() from UserService.
+        User user = userService.getUser(userId).get();
         List<Contact> contact = contactRepository.getAllContactsByUser(user);
         return contact;
     }
