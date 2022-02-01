@@ -1,7 +1,6 @@
 package com.phone.contacts.controller;
 
 import com.phone.contacts.model.Address;
-import com.phone.contacts.model.Contact;
 import com.phone.contacts.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,4 +30,9 @@ public class AddressController {
         return addressService.createAddress(userId, contactId, addressObject);
     }
 
+    @GetMapping("/user/{userId}/contact/{contactId}/address/{addressId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId/address/addressId
+    public List<Address> getAddress(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long addressId) {
+        System.out.println("calling getAddress");
+        return addressService.getAddress(userId, contactId, addressId);
+    }
 }
