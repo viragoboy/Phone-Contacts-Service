@@ -79,4 +79,16 @@ public class PhoneService {
         }
     }
 
+    public Phone deletePhone(Long userId, Long contactId, Long phoneId) {
+        Contact contact = contactService.getContactById(userId, contactId);
+        Optional<Phone> optionalPhone = this.phoneRepository.getPhoneByContactAndPhoneId(contact, phoneId);
+        if (optionalPhone.isPresent()) {
+            Phone phone = optionalPhone.get();
+            phoneRepository.delete(phone);
+            return phone;
+        } else {
+            throw new InformationNotFoundException("phone with id " + phoneId + " not found.");
+        }
+    }
+
 }
