@@ -62,16 +62,27 @@ public class AddressService {
         }
     }
 
-    public  Address updateAddress(Long userId, Long contactId, Long addressId, Address addressObject) {
+    public Address updateAddress(Long userId, Long contactId, Long addressId, Address addressObject) {
         Contact contact = contactService.getContactById(userId, contactId);
         if (contact.getAddress() != null && contact.getAddress().getAddressId() == addressId) {
-//            addressObject.setContact(contact);
-//            Address updatedAddress = addressRepository.save(addressObject);
             contact.getAddress().setStreet(addressObject.getStreet());
             contact.getAddress().setCity(addressObject.getCity());
             contact.getAddress().setState(addressObject.getState());
             contact.getAddress().setZipCode(addressObject.getZipCode());
             return addressRepository.save(contact.getAddress());
+        } else {
+            throw new InformationNotFoundException("address with id " + addressId + " not found.");
+        }
+    }
+
+    public Address deleteAddress(Long userId, Long contactId, Long addressId) {
+        Contact contact = contactService.getContactById(userId, contactId);
+        if (contact.getAddress() != null && contact.getAddress().getAddressId() == addressId) {
+    // Now that I have a valid contact object, let's set the address to null.
+    // Setting it to null and then saving the contact tells JPA that there are no more references to that Address record, and it deletes it.
+            contact.setAddress(null);
+            contactRepository.save(contact);
+            return contact.getAddress();
         } else {
             throw new InformationNotFoundException("address with id " + addressId + " not found.");
         }
