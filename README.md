@@ -66,3 +66,14 @@ As a user I want to be able to keep a phone contact list.
 | GET          | /api/user/{userId}/contact/{contactId}/address/{address_id} | Get an address by Id | None           |
 | PUT          | /api/user/{userId}/contact/{contactId}/address/{address_id} | Update an address    | Address object |
 | DELETE       | /api/user/{userId}/contact/{contactId}/address/{address_id} | Delete an address    | None           |
+
+
+### Endpoints for Phone
+
+| Request Type | URL                                                     | Functionality  | Request Body |
+|--------------|---------------------------------------------------------|----------------|--------------|
+| GET          | /api/user/{userId}/contact/{contactId}/phone            | Get all phones | None         |
+| POST         | /api/user/{userId}/contact/{contactId}/phone            | Create a phone | Phone object |
+| GET          | /api/user/{userId}/contact/{contactId}/phone/{phone_id} | Get a phone    | None         |
+| PUT          | /api/user/{userId}/contact/{contactId}/phone/{phone_id} | Update a phone | Phone object |
+| DELETE       | /api/user/{userId}/contact/{contactId}/phone/{phone_id} | Delete a phone | None         |
