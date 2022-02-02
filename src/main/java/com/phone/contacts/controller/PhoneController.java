@@ -36,4 +36,11 @@ public class PhoneController {
         System.out.println("calling getPhoneById");
         return phoneService.getPhoneById(userId, contactId, phoneId);
     }
+
+    @PutMapping("/user/{userId}/contact/{contactId}/phone/{phoneId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId/phone/phoneId
+    public Phone updatePhone(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long phoneId, @RequestBody Phone phoneObject) {
+        System.out.println(("calling updatePhone"));
+        return phoneService.updatePhone(userId, contactId, phoneId);
+    }
+
 }
