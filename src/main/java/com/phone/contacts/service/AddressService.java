@@ -43,7 +43,7 @@ public class AddressService {
     public Address createAddress(Long userId, Long contactId, Address addressObject) {
         Contact contact = contactService.getContactById(userId, contactId);
         if (contact.getAddress() == null) {
-            addressObject.setContact(contact);
+            addressObject.setContact(contact);   // This is linking an address to the contact.
             Address newAddress = addressRepository.save(addressObject);
             contact.setAddress(newAddress);
             contactRepository.save(contact);
