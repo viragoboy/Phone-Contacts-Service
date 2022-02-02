@@ -1,5 +1,7 @@
 package com.phone.contacts.service;
 
+import com.phone.contacts.exceptions.InformationExistException;
+import com.phone.contacts.model.Address;
 import com.phone.contacts.model.Contact;
 import com.phone.contacts.model.Phone;
 import com.phone.contacts.repository.ContactRepository;
@@ -38,6 +40,19 @@ public class PhoneService {
         Contact contact = contactService.getContactById(userId, contactId);
         List<Phone> phone = phoneRepository.getPhoneByContact(contact);
         return contact.getPhones();
+    }
+
+    public Phone createPhone(Long userId, Long contactId, Phone phoneObject) {
+        Contact contact = contactService.getContactById(userId, contactId);
+        if (contact.getPhones() == null) {
+            phoneObject.setContact(contact);   // This is linking a phone to the contact.
+            Phone newPhone = phoneRepository.save(phoneObject);
+            contact.setPhones((List<Phone>) newPhone);
+            contactRepository.save(contact);
+            return newPhone;
+        } else {
+            throw new InformationExistException("phone for contact id " + contactId + " already exists.");
+        }
     }
 
 }

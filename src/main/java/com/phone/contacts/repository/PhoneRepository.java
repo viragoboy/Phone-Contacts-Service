@@ -10,4 +10,6 @@ public interface PhoneRepository extends JpaRepository<Phone, Long> {
 
     List<Phone> getPhoneByContact(Contact contact);
 
+    Phone getPhoneByContactAndPhoneId(Contact contact, Long phoneId);
+
 }
