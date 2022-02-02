@@ -66,4 +66,17 @@ public class PhoneService {
         }
     }
 
+    public Phone updatePhone(Long userId, Long contactId, Long phoneId, Phone phoneObject) {
+        Contact contact = contactService.getContactById(userId, contactId);
+        Optional<Phone> optionalPhone = this.phoneRepository.getPhoneByContactAndPhoneId(contact, phoneId);
+        if (optionalPhone.isPresent()) {
+            Phone phone = optionalPhone.get();
+            phone.setType(phoneObject.getType());
+            phone.setNumber(phoneObject.getNumber());
+            return phoneRepository.save(phone);
+        } else {
+            throw new InformationNotFoundException("phone with id " + phoneId + " not found.");
+        }
+    }
+
 }
