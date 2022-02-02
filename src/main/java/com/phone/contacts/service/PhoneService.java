@@ -1,9 +1,13 @@
 package com.phone.contacts.service;
 
+import com.phone.contacts.model.Contact;
+import com.phone.contacts.model.Phone;
 import com.phone.contacts.repository.ContactRepository;
 import com.phone.contacts.repository.PhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PhoneService {
@@ -27,6 +31,13 @@ public class PhoneService {
     @Autowired
     public void setContactRepository(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;
+    }
+
+    public List<Phone> getAllPhones(Long userId, Long contactId) {
+        // This gives me the contactObject and throws an exception if it doesn't exist. Is calling getContact() from ContactService.
+        Contact contact = contactService.getContactById(userId, contactId);
+        List<Phone> phone = phoneRepository.getPhoneByContact(contact);
+        return contact.getPhones();
     }
 
 }
