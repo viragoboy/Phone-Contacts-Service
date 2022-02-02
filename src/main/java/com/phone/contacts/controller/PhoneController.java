@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api")    // url -> http://localhost:9092/api
@@ -31,7 +32,7 @@ public class PhoneController {
     }
 
     @GetMapping("/user/{userId}/contact/{contactId}/phone/{phoneId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId/phone/phoneId
-    public Phone getPhoneById(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long phoneId) {
+    public Optional<Phone> getPhoneById(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long phoneId) {
         System.out.println("calling getPhoneById");
         return phoneService.getPhoneById(userId, contactId, phoneId);
     }

@@ -1,6 +1,7 @@
 package com.phone.contacts.service;
 
 import com.phone.contacts.exceptions.InformationExistException;
+import com.phone.contacts.exceptions.InformationNotFoundException;
 import com.phone.contacts.model.Contact;
 import com.phone.contacts.model.Phone;
 import com.phone.contacts.repository.ContactRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PhoneService {
@@ -35,7 +37,7 @@ public class PhoneService {
     }
 
     public List<Phone> getAllPhones(Long userId, Long contactId) {
-        // This gives me the contactObject and throws an exception if it doesn't exist. Is calling getContact() from ContactService.
+        // This gives me the contactObject and throws an exception if it doesn't exist. Is calling getContactById() from ContactService.
         Contact contact = contactService.getContactById(userId, contactId);
         List<Phone> phone = phoneRepository.getPhoneByContact(contact);
         return contact.getPhones();
@@ -51,6 +53,16 @@ public class PhoneService {
             return (Phone) newPhone;
         } else {
             throw new InformationExistException("phone for contact id " + contactId + " already exists.");
+        }
+    }
+
+    public Optional<Phone> getPhoneById(Long userId, Long contactId, Long phoneId) {
+        Contact contact = contactService.getContactById(userId, contactId);
+        Optional<Phone> phone = this.phoneRepository.getPhoneByContactAndPhoneId(contact, phoneId);
+        if (phone.isPresent()) {
+            return phone;
+        } else {
+            throw new InformationNotFoundException("phone with id " + phoneId + " not found.");
         }
     }
 

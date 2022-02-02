@@ -5,11 +5,12 @@ import com.phone.contacts.model.Phone;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PhoneRepository extends JpaRepository<Phone, Long> {
 
     List<Phone> getPhoneByContact(Contact contact);
 
-    Phone getPhoneByContactAndPhoneId(Contact contact, Long phoneId);
+    Optional<Phone> getPhoneByContactAndPhoneId(Contact contact, Long phoneId);
 
 }
