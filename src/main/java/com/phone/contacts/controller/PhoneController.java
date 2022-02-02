@@ -30,4 +30,9 @@ public class PhoneController {
         return phoneService.createPhone(userId, contactId, phoneObject);
     }
 
+    @GetMapping("/user/{userId}/contact/{contactId}/phone/{phoneId}")   // url -> http://localhost:9092/api/user/userId/contact/contactId/phone/phoneId
+    public Phone getPhoneById(@PathVariable Long userId, @PathVariable Long contactId, @PathVariable Long phoneId) {
+        System.out.println("calling getPhoneById");
+        return phoneService.getPhoneById(userId, contactId, phoneId);
+    }
 }
