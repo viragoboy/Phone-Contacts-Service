@@ -1,7 +1,10 @@
 package com.phone.contacts.controller;
 
+import com.phone.contacts.model.Address;
 import com.phone.contacts.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +17,12 @@ public class PhoneController {
     @Autowired
     public void setPhoneService(PhoneService phoneService) {
         this.phoneService = phoneService;
+    }
+
+    @GetMapping("/user/{userId}/contact/{contactId}/phone")   // url -> http://localhost:9092/api/user/userId/contact/contactId/phone
+    public Address getAllPhones(@PathVariable Long userId, @PathVariable Long contactId) {
+        System.out.println("calling getAllPhones");
+        return addressService.getAllPhones(userId, contactId);
     }
 
 }
