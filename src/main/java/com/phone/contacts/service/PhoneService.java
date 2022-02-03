@@ -4,7 +4,6 @@ import com.phone.contacts.exceptions.InformationExistException;
 import com.phone.contacts.exceptions.InformationNotFoundException;
 import com.phone.contacts.model.Contact;
 import com.phone.contacts.model.Phone;
-import com.phone.contacts.model.User;
 import com.phone.contacts.repository.ContactRepository;
 import com.phone.contacts.repository.PhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +29,6 @@ public class PhoneService {
         this.contactService = contactService;
     }
 
-    private ContactRepository contactRepository;
-
-    @Autowired
-    public void setContactRepository(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
-    }
-
     public List<Phone> getAllPhones(Long userId, Long contactId) {
         // This gives me the contactObject and throws an exception if it doesn't exist. Is calling getContactById() from ContactService.
         Contact contact = contactService.getContactById(userId, contactId);
@@ -56,7 +48,7 @@ public class PhoneService {
 
     public Optional<Phone> getPhoneById(Long userId, Long contactId, Long phoneId) {
         Contact contact = contactService.getContactById(userId, contactId);
-        Optional<Phone> phone = this.phoneRepository.getPhoneByContactAndPhoneId(contact, phoneId);
+        Optional<Phone> phone = phoneRepository.getPhoneByContactAndPhoneId(contact, phoneId);
         if (phone.isPresent()) {
             return phone;
         } else {
@@ -66,7 +58,7 @@ public class PhoneService {
 
     public Phone updatePhone(Long userId, Long contactId, Long phoneId, Phone phoneObject) {
         Contact contact = contactService.getContactById(userId, contactId);
-        Optional<Phone> optionalPhone = this.phoneRepository.getPhoneByContactAndPhoneId(contact, phoneId);
+        Optional<Phone> optionalPhone = phoneRepository.getPhoneByContactAndPhoneId(contact, phoneId);
         if (optionalPhone.isPresent()) {
             Phone phone = optionalPhone.get();
             phone.setType(phoneObject.getType());
@@ -79,7 +71,7 @@ public class PhoneService {
 
     public Phone deletePhone(Long userId, Long contactId, Long phoneId) {
         Contact contact = contactService.getContactById(userId, contactId);
-        Optional<Phone> optionalPhone = this.phoneRepository.getPhoneByContactAndPhoneId(contact, phoneId);
+        Optional<Phone> optionalPhone = phoneRepository.getPhoneByContactAndPhoneId(contact, phoneId);
         if (optionalPhone.isPresent()) {
             Phone phone = optionalPhone.get();
             phoneRepository.delete(phone);
