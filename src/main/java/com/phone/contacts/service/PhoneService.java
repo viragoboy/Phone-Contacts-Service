@@ -4,6 +4,7 @@ import com.phone.contacts.exceptions.InformationExistException;
 import com.phone.contacts.exceptions.InformationNotFoundException;
 import com.phone.contacts.model.Contact;
 import com.phone.contacts.model.Phone;
+import com.phone.contacts.model.User;
 import com.phone.contacts.repository.ContactRepository;
 import com.phone.contacts.repository.PhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,14 +45,12 @@ public class PhoneService {
 
     public Phone createPhone(Long userId, Long contactId, Phone phoneObject) {
         Contact contact = contactService.getContactById(userId, contactId);
-        if (contact.getPhones().isEmpty()) {
+        Optional<Phone> phone = phoneRepository.getPhoneByContact(contact).stream().filter(p -> p.getNumber().equals(phoneObject.getNumber())).findFirst();
+        if (phone.isEmpty()) {
             phoneObject.setContact(contact);   // This is linking a phone to the contact.
-            List<Phone> newPhone = (List<Phone>) phoneRepository.save(phoneObject);
-            contact.setPhones(newPhone);
-            contactRepository.save(contact);
-            return (Phone) newPhone;
+            return phoneRepository.save(phoneObject);
         } else {
-            throw new InformationExistException("phone for contact id " + contactId + " already exists.");
+            throw new InformationExistException("phone " + phoneObject.getNumber() + " already exists.");
         }
     }
 
