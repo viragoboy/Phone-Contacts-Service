@@ -39,7 +39,6 @@ public class PhoneService {
     public List<Phone> getAllPhones(Long userId, Long contactId) {
         // This gives me the contactObject and throws an exception if it doesn't exist. Is calling getContactById() from ContactService.
         Contact contact = contactService.getContactById(userId, contactId);
-        List<Phone> phone = phoneRepository.getPhoneByContact(contact);
         return contact.getPhones();
     }
 
