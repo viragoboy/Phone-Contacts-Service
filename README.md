@@ -25,6 +25,10 @@ This project consists of:
 * Postman
 * Google
 
+#### Dependencies
+The project must have the following dependencies inside the pom.xml file:
+![image info](./images/Dependencies.png)
+
 ## Phone Contacts User Stories
 As a user I want to be able to create a new phone contact.
 
