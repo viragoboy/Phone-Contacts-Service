@@ -74,5 +74,35 @@ As a user I want to be able to keep a phone contact list.
 
 ## Sample of data
 ```
-
+[
+    {
+        "userId": 1,
+        "name": "Tatiana Domingue",
+        "contacts": [
+            {
+                "contactId": 1,
+                "name": "Lisa Smith",
+                "address": {
+                    "addressId": 1,
+                    "street": "92 Rock St",
+                    "city": "Mountain",
+                    "state": "Colorado",
+                    "zipCode": 74298
+                },
+                "phones": [
+                    {
+                        "phoneId": 1,
+                        "type": "mobile",
+                        "number": "(498) 921-8758"
+                    },
+                    {
+                        "phoneId": 2,
+                        "type": "home",
+                        "number": "(478) 521-6532"
+                    }
+                ]
+            }
+        ]
+    }
+]
 ```
