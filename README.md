@@ -4,7 +4,26 @@ Project for my bootcamp
 
 ## Purpose of this application
 This application is designed to manage phone contacts similar to what is available in a smartphone. The user should be able to create new contacts, update those contacts and delete them. 
-This project involved using a REST API for a phone contacts database that allows the user to view a full list of contacts.
+This project involves using a REST API for a phone contacts database that allows the user to view a full list of contacts.
+
+The project is built using the Model View Controller design (MVC). Following the objective of "Separation of Concerns" allowing the application to communicate for data logic and data access.
+
+When the user sends an API request in Postman the Controller receives it, comunicates it to the Service which interacts with the Java Persistence API (JPA) to store, update and retrieve data in a relational database (postgres).
+
+This project consists of:
+* 4 Model Classes
+* 4 Controller Classes
+* 4 Service Classes
+* 4 Repository Interfaces
+* 20 API endpoints, all made public.
+
+#### System Tools Used
+* Spring Boot
+* IntelliJ IDEA/Java
+* Lucid App
+* Postgres 
+* Postman
+* Google
 
 ## Phone Contacts User Stories
 As a user I want to be able to create a new phone contact.
