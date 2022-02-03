@@ -4,10 +4,9 @@ Project for my bootcamp
 
 ## Purpose of this application
 This application is designed to manage phone contacts similar to what is available in a smartphone. The user should be able to create new contacts, update those contacts and delete them. 
+This project involved using a REST API for a phone contacts database that allows the user to view a full list of contacts.
 
-
-### Phone Contacts User Stories
-
+## Phone Contacts User Stories
 As a user I want to be able to create a new phone contact.
 
 * Given that I want to create a new contact
@@ -34,9 +33,10 @@ As a user I want to be able to delete a contact not longer needed.
 
 As a user I want to be able to keep a phone contact list.
 
+## Entity Relationship Diagram (ERD)
+![image info](./images/ERD.png)
 
 ### Endpoints for User
-
 | Request Type | URL                | Functionality | Request Body |
 |--------------|--------------------|---------------|--------------|
 | GET          | /api/user          | Get all users | None         |
@@ -45,35 +45,34 @@ As a user I want to be able to keep a phone contact list.
 | PUT          | /api/user/{userId} | Update a user | User object  |
 | DELETE       | /api/user/{userId} | Delete a user | None         |
 
-
 ### Endpoints for Contact
-
-| Request Type | URL                                    | Functionality    | Request Body   |
-|--------------|----------------------------------------|------------------|----------------|
-| GET          | /api/user/{userId}/contact             | Get all contacts | None           |
-| POST         | /api/user/{userId}/contact             | Create a contact | Contact object |
-| GET          | /api/user/{userId}/contact/{contactId} | Get a contact    | None           |
-| PUT          | /api/user/{userId}/contact/{contactId} | Update a contact | Contact object |
-| DELETE       | /api/user/{userId}/contact/{contactId} | Delete a contact | None           |
-
+| Request Type | URL                                    | Functionality       | Request Body   |
+|--------------|----------------------------------------|---------------------|----------------|
+| GET          | /api/user/{userId}/contact             | Get all contacts    | None           |
+| POST         | /api/user/{userId}/contact             | Create a contact    | Contact object |
+| GET          | /api/user/{userId}/contact/{contactId} | Get a contact by Id | None           |
+| PUT          | /api/user/{userId}/contact/{contactId} | Update a contact    | Contact object |
+| DELETE       | /api/user/{userId}/contact/{contactId} | Delete a contact    | None           |
 
 ### Endpoints for Address
-
-| Request Type | URL                                                         | Functionality        | Request Body   |
-|--------------|-------------------------------------------------------------|----------------------|----------------|
-| GET          | /api/user/{userId}/contact/{contactId}/address              | Get an address       | None           |
-| POST         | /api/user/{userId}/contact/{contactId}/address              | Create an address    | Address object |
-| GET          | /api/user/{userId}/contact/{contactId}/address/{address_id} | Get an address by Id | None           |
-| PUT          | /api/user/{userId}/contact/{contactId}/address/{address_id} | Update an address    | Address object |
-| DELETE       | /api/user/{userId}/contact/{contactId}/address/{address_id} | Delete an address    | None           |
-
+| Request Type | URL                                                        | Functionality        | Request Body   |
+|--------------|------------------------------------------------------------|----------------------|----------------|
+| GET          | /api/user/{userId}/contact/{contactId}/address             | Get an address       | None           |
+| POST         | /api/user/{userId}/contact/{contactId}/address             | Create an address    | Address object |
+| GET          | /api/user/{userId}/contact/{contactId}/address/{addressId} | Get an address by Id | None           |
+| PUT          | /api/user/{userId}/contact/{contactId}/address/{addressId} | Update an address    | Address object |
+| DELETE       | /api/user/{userId}/contact/{contactId}/address/{addressId} | Delete an address    | None           |
 
 ### Endpoints for Phone
+| Request Type | URL                                                    | Functionality     | Request Body |
+|--------------|--------------------------------------------------------|-------------------|--------------|
+| GET          | /api/user/{userId}/contact/{contactId}/phone           | Get all phones    | None         |
+| POST         | /api/user/{userId}/contact/{contactId}/phone           | Create a phone    | Phone object |
+| GET          | /api/user/{userId}/contact/{contactId}/phone/{phoneId} | Get a phone by Id | None         |
+| PUT          | /api/user/{userId}/contact/{contactId}/phone/{phoneId} | Update a phone    | Phone object |
+| DELETE       | /api/user/{userId}/contact/{contactId}/phone/{phoneId} | Delete a phone    | None         |
 
-| Request Type | URL                                                     | Functionality  | Request Body |
-|--------------|---------------------------------------------------------|----------------|--------------|
-| GET          | /api/user/{userId}/contact/{contactId}/phone            | Get all phones | None         |
-| POST         | /api/user/{userId}/contact/{contactId}/phone            | Create a phone | Phone object |
-| GET          | /api/user/{userId}/contact/{contactId}/phone/{phone_id} | Get a phone    | None         |
-| PUT          | /api/user/{userId}/contact/{contactId}/phone/{phone_id} | Update a phone | Phone object |
-| DELETE       | /api/user/{userId}/contact/{contactId}/phone/{phone_id} | Delete a phone | None         |
+## Sample of data
+```
+
+```
