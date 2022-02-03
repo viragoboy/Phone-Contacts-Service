@@ -35,7 +35,7 @@ public class AddressService {
     }
 
     public Address getAddress(Long userId, Long contactId) {
-        // This gives me the contactObject and throws an exception if it doesn't exist. Is calling getContact() from ContactService.
+        // This gives me the contactObject and throws an exception if it doesn't exist. Is calling getContactById() from ContactService.
         Contact contact = contactService.getContactById(userId, contactId);
         return contact.getAddress();
     }
@@ -80,9 +80,10 @@ public class AddressService {
         if (contact.getAddress() != null && contact.getAddress().getAddressId() == addressId) {
     // Now that I have a valid contact object, let's set the address to null.
     // Setting it to null and then saving the contact tells JPA that there are no more references to that Address record, and it deletes it.
+            Address addressToBeDeleted = contact.getAddress();
             contact.setAddress(null);
             contactRepository.save(contact);
-            return contact.getAddress();
+            return addressToBeDeleted;
         } else {
             throw new InformationNotFoundException("address with id " + addressId + " not found.");
         }
