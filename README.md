@@ -132,11 +132,10 @@ As a user I want to be able to keep a phone contact list.
 ```
 
 ### Problems encountered
-When I created a new contact I had a recursion problem which I solved by including @JsonIgnore in my Contact model. 
-[I'm an inline-style link] https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
+When I created a new contact I had a recursion problem which I solved by including @JsonIgnore in my Contact model: https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
 
-When I tried to delete an address the database wasn't allowing me to do it. I solved it by including orphanRemoval = true in my Contact model.
-[I'm an inline-style link] https://stackoverflow.com/questions/4329577/how-does-jpa-orphanremoval-true-differ-from-the-on-delete-cascade-dml-clause
+When I tried to delete an address the database wasn't allowing me to do it. I solved it by including orphanRemoval = true in my Contact model: 
+[I'm an inline-style link] (https://stackoverflow.com/questions/4329577/how-does-jpa-orphanremoval-true-differ-from-the-on-delete-cascade-dml-clause)
 
 The database wasn't allowing me to delete a contact that still has at least one phone number in it. First I tried this: https://stackoverflow.com/questions/6189928/manytoone-jpa-association-and-cascade-not-sure-what-happens-if-i-delete-an-o
 which didn't work, so in Contact Service inside the deleteContact method I'm iterating inside the phone list and deleting the phone(s) it contains to then delete the contact. 
