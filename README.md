@@ -4,7 +4,7 @@
 This application is designed to manage phone contacts similar to what is available in a smartphone. The user should be able to create new contacts, update those contacts and delete them. 
 This project involves using a REST API for a phone contacts database that allows the user to view a full list of contacts.
 
-The project is built using the Model View Controller design (MVC). Following the principle of "Separation of Concerns" allowing the application to communicate for data logic and data access.
+The project is built using the Model View Controller design (MVC), following the principle of "separation of concerns" allowing the application to communicate for data logic and data access.
 
 When the user sends an API request in Postman the Controller receives it, comunicates it to the Service which interacts with the Java Persistence API (JPA) to store, update and retrieve data in a PostgreSQL relational database.
 
@@ -23,7 +23,6 @@ This project consists of:
 * Lucidchart
 * PostgreSQL 
 * Postman
-* Google
 
 #### Installation & Dependencies
 * Create a PostgreSQL database
