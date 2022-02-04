@@ -6,9 +6,9 @@ Project for my bootcamp
 This application is designed to manage phone contacts similar to what is available in a smartphone. The user should be able to create new contacts, update those contacts and delete them. 
 This project involves using a REST API for a phone contacts database that allows the user to view a full list of contacts.
 
-The project is built using the Model View Controller design (MVC). Following the objective of "Separation of Concerns" allowing the application to communicate for data logic and data access.
+The project is built using the Model View Controller design (MVC). Following the principle of "Separation of Concerns" allowing the application to communicate for data logic and data access.
 
-When the user sends an API request in Postman the Controller receives it, comunicates it to the Service which interacts with the Java Persistence API (JPA) to store, update and retrieve data in a relational database (postgres).
+When the user sends an API request in Postman the Controller receives it, comunicates it to the Service which interacts with the Java Persistence API (JPA) to store, update and retrieve data in a PostgreSQL relational database.
 
 This project consists of:
 * 4 Model Classes
@@ -19,9 +19,11 @@ This project consists of:
 
 #### System Tools Used
 * Spring Boot
-* IntelliJ IDEA/Java
-* Lucid App
-* Postgres 
+* IntelliJ IDEA
+* Java
+* Maven
+* Lucidchart
+* PostgreSQL 
 * Postman
 * Google
 
@@ -131,7 +133,7 @@ As a user I want to be able to keep a phone contact list.
 ]
 ```
 
-### Problems encountered
+## Problems encountered
 When I created a new contact I had a recursion problem which I solved by including @JsonIgnore in my Contact model. 
 Solution found here: https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
 
