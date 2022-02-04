@@ -4,7 +4,6 @@ import com.phone.contacts.exceptions.InformationExistException;
 import com.phone.contacts.exceptions.InformationNotFoundException;
 import com.phone.contacts.model.Contact;
 import com.phone.contacts.model.Phone;
-import com.phone.contacts.repository.ContactRepository;
 import com.phone.contacts.repository.PhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
