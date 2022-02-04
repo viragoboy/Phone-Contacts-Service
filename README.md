@@ -1,7 +1,5 @@
 # Phone-Contacts-Service
 
-Project for my bootcamp
-
 ## Purpose of this application
 This application is designed to manage phone contacts similar to what is available in a smartphone. The user should be able to create new contacts, update those contacts and delete them. 
 This project involves using a REST API for a phone contacts database that allows the user to view a full list of contacts.
@@ -27,8 +25,10 @@ This project consists of:
 * Postman
 * Google
 
-#### Dependencies
-The project must have the following dependencies inside the pom.xml file:
+#### Installation & Dependencies
+* Create a PostgreSQL database
+* Configure the application-dev.properties including server, spring jpa and spring datasource information
+* The project must have the following dependencies inside the pom.xml file:
 
 ![image info](./images/Dependencies.png)
 
